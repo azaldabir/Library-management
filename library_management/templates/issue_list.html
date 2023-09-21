@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} All Students List {% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center"><u>All Issued Books</u></h1>
+    <table class="table table-hover" id="example">
+        <thead>
+            <tr class="text-center">
+                <th>Sr.No</th>
+                <th>Transaction</th>
+                <th>Member Name</th>
+                <th>ISBN</th>
+                <th>Book Name</th>
+                <th>Issued Date</th>
+                <th>Expiry Date</th>
+                <th>Fine</th>
+                <th>Collect Fee</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in issued %}
+            <tr class="text-center">
+                <td>{{forloop.counter}}.</td>
+                <td>{{i.transactionID}}</td>
+                <td>{{i.member}}</td>
+                <td>{{i.book.isbn}}</td>
+                <td>{{i.book.title}}</td>
+                <td>{{i.issue_date}}</td>
+                <td>{{i.return_date}}</td>
+                <td>₹ {{i.rent_fee}}</td>
+                <td>
+                    {% if i.rent_fee == 0 %}
+                      <a href="#" class="btn btn-success">Received</a>
+                    {% else %}
+                    <a href="{% url 'collect-fee' transaction_id=i.transactionID %}" class="btn btn-primary" onclick="return confirm('Are you sure you want to collect this fee?')">Collect</a>
+                    {% endif %}
+                  </td>            
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

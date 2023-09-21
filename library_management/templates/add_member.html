@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Library Management System {% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<div class="container">
+    <form method="POST" method = "post" action="{% url 'add-member' %}"> 
+        
+        {% csrf_token %}
+        <br>
+        <h1 class="text-center"><u>Member Register</u></h1>
+    <div class="row mt-4">
+        <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">name</i></label>
+            <input type="text" class="form-control mt-2" name="name" placeholder="Enter name" required>
+        </div>
+    </div>
+
+
+
+    <div class="row mt-4">
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Email</i></label>
+            <input type="email" class="form-control mt-2" name="email" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Mobile Number</i></label>
+            <input type="number" class="form-control mt-2" name="phone" placeholder="Enter Mobile Number" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Address</i></label>
+            <!-- <textarea type="text" class="form-control mt-2" name="phone" placeholder="Enter Mobile Number" required> -->
+                <textarea name="address" class="form-control" placeholder="Enter a Address" id="" ></textarea>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary mt-4">Register Member</button>
+</div>
+</form>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+
